@@ -12,7 +12,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const fetchStudents = async () => {
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/students`);
+      const response = await fetch(`${BACKEND_ENDPOINT}`);
       if (!response.ok) throw new Error("Failed to fetch students");
       const data = await response.json();
       setStudents(data);

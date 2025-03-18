@@ -18,7 +18,7 @@ const AddStudent = ({reload}: AddStudentProps) => {
 
     try {
       const response = await fetch(
-        `${BACKEND_ENDPOINT}/students`,
+        `${BACKEND_ENDPOINT}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
