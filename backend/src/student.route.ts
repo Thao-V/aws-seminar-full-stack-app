@@ -16,15 +16,20 @@ router.get("/", async (req: Request, res: Response) => {
 // Add a student
 router.post("/", async (req: Request, res: Response) => {
   const { id, name } = req.body;
-  if (!id || !name) return res.status(400).json({ message: "ID and name required" });
-
-  try {
-    await pool.query("INSERT INTO students (id, name) VALUES (?, ?)", [id, name]);
-    res.status(201).json({ message: "Student added" });
-  } catch (error) {
-    res.status(500).json({ message: "Error adding student" });
+  if (!id || !name) {
+    res.status(400).json({ message: "ID and name required" });
   }
-});
+  else{
+    try {
+      await pool.query("INSERT INTO students (id, name) VALUES (?, ?)", [id, name]);
+      res.status(201).json({ message: "Student added" });
+    } catch (error) {
+      res.status(500).json({ message: "Error adding student" });
+    }
+    res.status(201).json({ message: "Student added" });
+  }
+  
+})
 
 // Delete a student
 router.delete("/:id", async (req: Request, res: Response) => {
