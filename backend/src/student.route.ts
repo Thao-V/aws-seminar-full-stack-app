@@ -26,7 +26,6 @@ router.post("/", async (req: Request, res: Response) => {
     } catch (error) {
       res.status(500).json({ message: "Error adding student" });
     }
-    res.status(201).json({ message: "Student added" });
   }
   
 })
