@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Button, Container, H2, Input, Text } from "typetailui";
 import { BACKEND_ENDPOINT } from "./common";
+import { IStudent } from "./IStudent";
 
-interface Student {
-  id: string;
-  name: string;
+interface AddStudentProps {
+  reload: () => void;
 }
 
-const AddStudent = () => {
-  const [student, setStudent] = useState<Student>({ id: "", name: "" });
+const AddStudent = ({reload}: AddStudentProps) => {
+  const [student, setStudent] = useState<IStudent>({ id: "", name: "" });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -30,6 +30,7 @@ const AddStudent = () => {
 
       setMessage("Student added successfully!");
       setStudent({ id: "", name: "" }); // Reset form
+      reload();
     } catch (error) {
       setMessage("Error: Could not add student");
     } finally {
@@ -39,7 +40,7 @@ const AddStudent = () => {
 
   return (
     <Container className="max-w-md mx-auto mt-6 p-6 bg-white shadow-lg rounded-lg">
-      <H2 className="text-2xl font-bold text-center mb-4">Add Student</H2>
+      <H2 className="text-2xl font-bold text-center mb-4">Add New Student</H2>
 
       {message &&
         <Text className="text-center text-sm text-blue-500">
